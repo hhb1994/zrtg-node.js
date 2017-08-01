@@ -1,0 +1,54 @@
+doctype html
+html
+    head
+        title 管理页面
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
+        script(src='/javascripts/jquery-3.2.1.min.js')
+        script(src='/bootstrap-3.3.7-dist/js/bootstrap.min.js')
+    body(style='background-image:url("images/1.jpg")')
+        .container
+            .row(style='border:1px')
+                .col-md-10.col-md-offset-1
+                    .panel.panel-default(style='margin-top: 10px; border:1px')
+                        .panel-heading(style='background:#0d6aad')
+                            h4(align='center', style='color:#ffffff') 专家信息详情
+                        .panel-body(style='background:#e0e1ea', align='center')
+                            form(action='expert_update.action', method='post', style='margin-top:60px', role='form')
+                                input(type='hidden', name='id', value='${ex.uid }')
+                                h4
+                                    | 专家姓名:
+                                    input(type='text', name='name', value='${ex.name }')
+                                h4
+                                    | 专家工号:
+                                    input(type='text', name='no', value='${ex.no }')
+                                h4
+                                    | 专家部门:
+                                    input(type='text', name='dept', value='${ex.dept}')
+                                h4
+                                    input.btn.btn-success.btn-block(type='submit', value='修改', style='width:40%')
+                                hr
+                                h4 专家技能
+                                table.table(style='width: 60%')
+                                    thead
+                                        tr
+                                            th 技能
+                                            th 修改
+                                            th 删除
+                                    tbody
+                                        tr
+                                            c:foreach(items='${expertAbi}', var='bean')
+                                                input(type='hidden', name='uid', value='${bean.uid }')
+                                                td
+                                                    input(type='text', readonly='readonly', name='abi', value='${bean.abi}')
+                                                td
+                                                    input.btn.btn-info(type='button', value='修改' onclick="window.location.href='expertAbi_detail.action?id=${bean.id }'")
+                                                td
+                                                    input.btn.btn-danger(type='button', value='删除' onclick="window.location.href='expertAbi_delete.action?id=${bean.id }'")
+                                hr
+                                input.btn.btn-success.btn-block(type='button', value='添加技能', style='width:40%', onclick="window.location.href='expertAbi_detail1.action?uid=${ex.uid }'")
+                                h3 本年度评标次数:${eb.count }
+                                hr
+                            h4(align='center') 返回到专家信息管理界面
+                            .form-group
+                                button.btn.btn-block.btn-danger(style='width:40%', onclick="window.location.href='expert_list.jsp'") 返回

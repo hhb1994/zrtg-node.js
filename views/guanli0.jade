@@ -1,0 +1,71 @@
+doctype html
+html
+    head
+        title 管理页面
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
+        script(src='/javascripts/jquery-3.2.1.min.js')
+        script(src='/bootstrap-3.3.7-dist/js/bootstrap.min.js')
+    body(style='background-image:url("images/1.jpg")')
+        .container
+            .row
+                .col-md-6.col-md-offset-3
+                    .panel.panel-default(style='margin-top: 10px;border:1px')
+                        .panel-heading(style='background:#0d6aad')
+                            h4(align='center',style='color:#ffffff')
+                                |管理页面
+                        .panel-body
+                            h4( align ='center')
+                                |专家信息管理页面
+                            .form-group
+                                button#c1.btn.btn-success.btn-block(type='button')
+                                    | 进入
+                            hr
+                            h4(align='center')
+                                |抽签信息配置界面
+                            .form-group
+                                button#c2.btn.btn-block.btn-success(type='button')
+                                    |进入
+                            hr
+                            h4(align='center')
+                                | 后台配置界面
+                            .form-group
+                                button#c4.btn.btn-block.btn-success(type='button')
+                                    | 进入
+                            hr
+                            h4(align='center')
+                                |抽签系统
+                            .form-group
+                                button#c3.btn.btn-block.btn-lg.btn-info(type='button')
+                                    |进入
+                            hr
+                            h4(align='center')
+                                | 退出登录
+                            .form-group
+                                button#c5.btn.btn-block.btn-lg.btn-danger(type='button')
+                                    | 退出
+        script(type='text/javascript').
+            $(document).ready(function () {
+                var c1 = $('#c1');
+                var c2 = $('#c2');
+                var c3 = $('#c3');
+                var c4 = $('#c4');
+                c1.click(function () {
+                    window.location.href = 'guanli1';
+                });
+                c2.click(function () {
+                    window.location.href = 'guanli2';
+                });
+                c3.click(function () {
+                    window.location.href = 'chouqian';
+                });
+                c4.click(function () {
+                    window.location.href = 'houtai';
+                });
+                $('#c5').click(function () {
+                    if(confirm('确认退出登录？'))
+                    {
+                        window.location.href='login';
+                    }
+                })
+            });

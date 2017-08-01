@@ -1,0 +1,32 @@
+<body>
+    <div class="col-md-9">
+        <div style="margin-top:10px" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 align="center">专家详情</h3>
+            </div>
+        <div align="center" class="panel-body">
+            基本信息
+            <form action="expert_update.action" method = "post">
+                <input type="hidden" name="id" value="${ex.uid }">
+                专家姓名:<input class="form-group"  type="text" name = "name" value ="${ex.name }"><p>
+                专家工号:<input class="form-group" type="text" name = "no" value="${ex.no }"><p>
+                专家部门:<input class="form-group" type="text" name = "dept" value="${ex.dept}"><p>
+                <input type="submit" value="修改"><p>
+            </form>
+        </div>
+        <div align="center"> 专家技能
+            <c:forEach items = "${expertAbi}" var="bean" >
+                <input type="hidden" name="uid" value="${bean.uid }">
+                <input type="text" readonly="readonly" name = "abi" value="${bean.abi}">
+                <a href=" ">修改</a >
+                <a href="expertAbi_delete.action?id=${bean.id }" onClick="return confirm('删除后将无法恢复,确定要删除?')">删除</a >
+            </c:forEach><p>
+                <a href="expertAbi_detail1.action?uid=${ex.uid }">添加技能</a > <p>
+
+                <br>
+
+                本年度评标个数:${eb.count }<p>
+        </div>
+        </div>
+        </div>
+</body>

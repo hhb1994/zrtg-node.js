@@ -1,0 +1,186 @@
+doctype html
+html
+    head
+        title 专家信息管理页面
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type='text/javascript' src='/javascripts/jquery-3.2.1.min.js')
+        link(rel="stylesheet" type="text/css" href="DataTables-1.10.15/media/css/jquery.dataTables.css")
+        link(rel='stylesheet', href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
+        script(src='/bootstrap-3.3.7-dist/js/bootstrap.min.js')
+        script(type="text/javascript" charset="utf8" src="DataTables-1.10.15/media/js/jquery.dataTables.js")
+    body(style='background-image:url("images/1.jpg");background-repeat:no-repeat;background-attachment:fixed;')
+        .container
+            .row
+                .logo(align='center')
+                    img(src='images/1.png' style='margin-top:10px;margin-bottom:40px')
+                .col-md-3
+                    .panel.panel-default(style='border:1px')
+                        .panel-heading(style='background: #0d6aad')
+                            h3(align='center' style='color:#ffffff')
+                                | 选项
+                        .panel-body
+                            h4(align='center')
+                                | 新增用户信息
+                            .form-group(style='margin-bottom:40px')
+                                button.btn.btn-success.btn-block(data-toggle='modal' data-target='#modal1')
+                                    | 新增
+                            hr
+                            h4( align ='center')
+                                | 专家信息管理
+                            .form-group(style='margin-bottom:40px' )
+                                button#z1.btn.btn-success.btn-block(type='button')
+                                    | 进入
+                            h4(align='center')
+                                | 抽签系统配置页
+                            .form-group(style='margin-bottom:40px')
+                                button#z3.btn.btn-block.btn-success(type='button')
+                                    | 进入
+                            hr
+                            h4(align='center')
+                                | 退出登录
+                            .form-group(style='margin-bottom:40px')
+                                button#z4.btn.btn-block.btn-danger(type='button')
+                                    | 退出
+                .col-md-9
+                    .panel.panel-default(style='border:1px')
+                        .panel-heading(style='background:#0d6aad')
+                            h3(align='center' , style='color:#ffffff')
+                                |登录人员信息管理
+                        .panel-body(style='background:#e0e1ea' , align='center')
+                            table.table#tb(align='center')
+                                thead
+                                    tr
+                                        th
+                                            | ID
+                                        th
+                                            |账户名
+                                        th
+                                            |密码
+                                        th
+                                            |部门ID
+                                        th
+                                            |等级
+                                        th
+                                            |修改/删除
+                                tbody
+                                    each person in persons
+                                        tr(class='#{person.class}')
+                                            td #{person.id}
+                                            td #{person.username}
+                                            td #{person.password}
+                                            td #{person.bid}
+                                            td #{person.lv}
+                                            td
+                                                button.btn.btn-danger.btn-sm.b1(data-toggle='modal' data-target='#modal2')
+                                                    |修改/删除
+            .mode#modal1(tabindex='-1' role='dialog' aria-labelledby="label1"
+            aria-hidden="true" class='modal fade' style='width:auto')
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            h4.modal-title#label1
+                                | 新增一条用户信息
+                        .modal-body
+                            table.table.table-bordered.table-striped
+                                thead
+                                    tr
+                                        th
+                                            | 账户名
+                                        th
+                                            | 密码
+                                        th
+                                            | 部门
+                                        th
+                                            | 等级
+
+                                tbody
+                                    tr
+                                        td
+                                            input.form-control#a1(placeholder='输入账户名')
+                                        td
+                                            input.form-control#a2(placeholder='输入密码')
+                                        td
+                                            input.form-control#a3(placeholder='输入部门')
+                                        td
+                                            input.form-control#a4(placeholder='输入等级')
+
+                        .modal-footer
+                            button.btn.btn-default(data-dismiss="modal" type='button')
+                                | 取消
+                            button.btn.btn-success(type='button')
+                                | 保存
+            .mode#modal2(tabindex='-1' role='dialog' aria-labelledby="label2"
+            aria-hidden="true" class='modal fade' style='width:auto')
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            h4.modal-title#label2
+                                | 修改用户信息
+                        .modal-body
+                            table.table.table-bordered.table-striped
+                                thead
+                                    tr
+                                        th
+                                            | 账户名
+                                        th
+                                            | 密码
+                                        th
+                                            | 部门ID
+                                        th
+                                            | 等级
+
+                                tbody
+                                    tr
+                                        td
+                                            input.form-control#a5(placeholder='输入账户名')
+                                        td
+                                            input.form-control#a6(placeholder='输入密码')
+                                        td
+                                            input.form-control#a7(placeholder='部门ID')
+                                        td
+                                            input.form-control#a8(placeholder='输入等级')
+
+                        .modal-footer
+                            button.btn.btn-default(data-dismiss="modal" type='button')
+                                | 取消
+                            button.btn.btn-danger(type='button')
+                                | 删除
+                            button.btn.btn-success.b2(type='button')
+                                | 保存
+        script(type='text/javascript').
+            $(document).ready(function () {
+                $('#z1').click(function () {
+                    window.location.href='guanli1'
+                });
+                $('#z3').click(function () {
+                    window.location.href = 'guanli3'
+                });
+                $('#z4').click(function () {
+                    window.location.href='login'});
+                $('.b1').click(function () {
+                })
+                $('#tb').DataTable({
+                    "oLanguage": {
+                        "oAria": {
+                            "sSortAscending": " - click/return to sort ascending",
+                            "sSortDescending": " - click/return to sort descending"
+                        },
+                        "sLengthMenu": "显示 _MENU_ 记录",
+                        "sZeroRecords": "对不起，查询不到任何相关数据",
+                        "sEmptyTable": "未有相关数据",
+                        "sLoadingRecords": "正在加载数据-请等待...",
+                        "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+                        "sInfoEmpty": "当前显示0到0条，共0条记录",
+                        "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
+                        "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
+                        "sSearch": "模糊查询：",
+                        "sUrl": "",
+                        "oPaginate": {
+                            "sFirst": "首页",
+                            "sPrevious": " 上一页 ",
+                            "sNext": " 下一页 ",
+                            "sLast": " 尾页 "
+                        }
+                    }
+                });
+            });

@@ -1,0 +1,20 @@
+*{border:0;}
+body {background:url(1.jpg);
+	background-repeat:no-repeat;
+	background-attachment:fixed;}
+#div1 {position:relative; width:1000px; height:600px; margin: 20px auto 0; }
+#div1 a {position:absolute; top:0; left:0; color:#fff; font-weight:bold; text-decoration:none; padding: 3px 6px; }
+#div1 a:hover {background: #000; }
+#div1 .blue {color:blue;}
+#div1 .red {color:red;}
+#div1 .yellow {color:yellow;}
+h1 { font-size: 20px; color: #ffffff; }
+p { font: 8px Microsoft YaHei; text-align: center; color: #ba0c0c; }
+p a { font-size: 14px; color: #ba0c0c; }
+p a:hover { color: red; }
+.ver{
+	width: 25px;
+	font-size: 25px;
+	word-wrap: break-word; 
+	letter-spacing: 10px;
+}

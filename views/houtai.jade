@@ -1,0 +1,116 @@
+doctype html
+html
+    head
+        title 后台配置页面
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
+        script(src='/javascripts/jquery-3.2.1.min.js')
+        script(src='/bootstrap-3.3.7-dist/js/bootstrap.min.js')
+    body(style='background-image:url("images/1.jpg");background-repeat:no-repeat;background-attachment:fixed;')
+        .container
+            .row
+                .logo(align='center')
+                    img(src='images/1.png' style='margin-top:10px;margin-bottom:40px')
+                .col-md-8.col-md-offset-2
+                    .panel.panel-default(style='margin-top:10px;border:1px')
+                        .panel-heading(style='background: #0d6aad')
+                            h3(align='center' style='color:#ffffff')
+                                | 历次招标信息
+                        .panel-body(style = 'background:#e0e1ea')
+                            .form-group(align='center')
+                            table.table#tb(align='center')
+                                thead
+                                    tr
+                                        th
+                                            | 时间
+                                        th
+                                            | 项目名称
+                                        th
+                                            | 标段
+                                        th
+                                            | 投标金额
+                                        th
+                                            | 详情
+                                tbody
+                                    tr
+                                        td
+                                            | 2015
+                                        td
+                                            | Tencent
+                                        td
+                                            | 云平台
+                                        td
+                                            | 1000 万元
+                                        td
+                                            button.btn.btn-info.btn-sm(data-toggle='modal' data-target='#modal1')
+                                                |详情
+                                    tr
+                                        td
+                                            | 2015
+                                        td
+                                            | Tencent
+                                        td
+                                            | 云平台
+                                        td
+                                            | 1000 万元
+                                        td
+                                            button.btn.btn-info.btn-sm
+                                                | 详情
+                .moda#modal1(tabindex='-1' role='dialog' aria-labelledby="label1" aria-hidden="true" class='modal fade')
+                    .modal-dialog
+                        .modal-content
+                            .modal-header
+                                h4.modal-title#label1
+                                    |历年招标情况
+                            .modal-body
+                                table.table.table-bordered.table-striped(align='center')
+                                    thead
+                                        tr
+                                            th
+                                                | 项目名称
+                                            th
+                                                | 标段
+                                            th
+                                                | 投标金额
+                                            th
+                                                | 详情
+                                    tbody
+                                        each result in results
+                                            tr(class='#{result.class}')
+                                                td #{result.company}
+                                                td #{result.project}
+                                                td #{result.amount}万元
+                                                td
+                                                    button.btn.btn-sm.btn-info
+                                                        | 详情
+                            .modal-footer
+                                    button.btn.btn-primary(data-dismiss='modal')
+                                        |关闭
+
+        script(type='text/javascript').
+            $(document).ready(function () {
+                var a1 = $('.a1');
+                var a2 = $('.a2');
+                var b2 = $('.b2');
+                b2.click(function () {
+                    if (a2.val() == '' || isNaN(a2.val()))
+                    {alert('请输入有效的数字！')}
+                    else {
+                        if (confirm('确认把每年最高评标次数改为：' + a1.val() + '次，把专业评委数量改为：'+a2.val()+'人吗？'))
+                        {
+                            $.ajax({
+                                url : '/houtai/houtaipost',
+                                data : {
+                                    max: $('.a1').val(),
+                                    number : $('.a2').val()
+                                },
+                                type: 'POST',
+                                timeout: 36000,
+                                dataType: 'text',
+                                success: function () {
+                                }
+                            });
+                            alert('修改成功！')
+                        }}
+                });
+            })

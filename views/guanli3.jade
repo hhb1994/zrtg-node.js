@@ -1,0 +1,295 @@
+doctype html
+html
+    head
+        title 抽签信息配置页面
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src='/javascripts/jquery-3.2.1.min.js')
+        link(rel='stylesheet', href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
+        script(src='/bootstrap-3.3.7-dist/js/bootstrap.min.js')
+        script(src='jquery.tabletojson.js')
+    body(style='background-image:url("images/1.jpg");background-repeat:no-repeat;background-attachment:fixed;')
+        .container
+            .row
+                .logo(align='center')
+                    img(src='images/1.png' style='margin-top:10px;margin-bottom:40px')
+                .col-md-3
+                    .panel.panel-default(style='border:1px')
+                        .panel-heading(style='background: #0d6aad')
+                            h3(align='center' style='color:#ffffff')
+                                | 选项
+                        .panel-body
+                            h4(align='center')
+                                | 新建招标项目
+                            .form-group(style='margin-bottom:40px')
+                                button#z5.btn.btn-block.btn-success(type='button' data-toggle='modal' data-target='#modal1')
+                                    | 新建
+                            h4(align='center')
+                                | 查看往年抽签历史
+                            .form-group(style='margin-bottom:40px')
+                                button#x1.btn.btn-block.btn-success(type='button')
+                                    | 查看
+                            h4(align='center')
+                                | 查看往年抽签条件
+                            .form-group(style='margin-bottom:40px')
+                                button#x2.btn.btn-block.btn-success(type='button' data-toggle='modal' data-target='#modal2')
+                                    | 查看
+                            hr
+                            h4(align='center')
+                                | 开始抽签
+                            .form-group(style='margin-bottom:40px')
+                                button#z3.btn.btn-block.btn-info(type='button')
+                                    | 进入
+
+                            hr
+                            h4( align ='center')
+                                | 专家信息管理
+                            .form-group(style='margin-bottom:40px' )
+                                button#z1.btn.btn-success.btn-block(type='button')
+                                    | 进入
+                            hr
+                            h4(align='center')
+                                | 退出登录
+                            .form-group(style='margin-bottom:40px')
+                                button#z4.btn.btn-block.btn-danger(type='button')
+                                    | 退出
+                .col-md-9
+                    .panel.panel-default(style='border:1px')
+                        .panel-heading(style='background: #0d6aad')
+                            h3(align='center' style='color:#ffffff')
+                                |招标信息配置
+                        .panel-body(style = 'background:#e0e1ea')
+                            table.table(align='center')
+                                thead
+                                    tr
+                                        th
+                                            |招标项目
+                                        th
+                                            | 标段
+                                        th
+                                            |投标金额
+                                tbody
+                                    tr
+                                        td
+                                            p #{results[0].company}
+                                        td
+                                            p #{results[0].project}
+                                        td
+                                            p #{results[0].amount}万元
+                            h4(align='center')
+                                |抽签条件选择
+                            .con
+                                table.table.table-bordered
+                                    thead
+                                        tr
+                                            th
+                                                | 选择部门
+                                            th
+                                                | 专家数量
+                                    tbody
+                                        tr
+                                            td
+                                                select.form-control.b1
+                                                    option(value='部门1')
+                                                        |部门1
+                                                    option(value='部门2')
+                                                        | 部门2
+                                                    option(value='部门3')
+                                                        | 部门3
+                                                    option(value='部门4')
+                                                        | 部门4
+                                            td
+                                                select.form-control.b2
+                                                    option
+                                                        | 1
+                                                    option
+                                                        | 2
+                                                    option
+                                                        | 3
+                                                    option
+                                                        | 4
+                                                    option
+                                                        | 5
+                                                    option
+                                                        | 6
+                                                    option
+                                                        | 7
+                                                    option
+                                                        | 8
+                                                    option
+                                                        | 9
+
+                                .form-group(align='center')
+                                    .btn.btn-primary.a1
+                                        |添加条件
+                                table.table.table-bordered
+                                    thead
+                                        tr
+                                            th
+                                                | 选择技能
+                                            th
+                                                | 专家数量
+                                    tbody
+                                        tr
+                                            td
+                                                select.form-control.b3
+                                                    option(value='视频技能')
+                                                        | 视频技能
+                                                    option(value='音频技能')
+                                                        | 音频技能
+                                                    option(value='网络/IT')
+                                                        | 网络/IT
+                                                    option(value='灯光舞美')
+                                                        | 灯光舞美
+                                                    option(value='传输发射')
+                                                        | 传输发射
+                                            td
+                                                select.form-control.b4
+                                                    option
+                                                        | 1
+                                                    option
+                                                        | 2
+                                                    option
+                                                        | 3
+                                                    option
+                                                        | 4
+                                                    option
+                                                        | 5
+                                                    option
+                                                        | 6
+                                                    option
+                                                        | 7
+                                                    option
+                                                        | 8
+                                                    option
+                                                        | 9
+
+                                .form-group(align='center')
+                                    .btn.btn-primary.a2
+                                        | 添加条件
+                            .form-group
+                                table.table.c1
+                                    thead
+                                        tr
+                                            th
+                                                |部门/技能
+                                            th
+                                                |数量
+                                            th
+                                                |删除
+                                    tbody
+                                        tr
+                                            td
+                                            td
+                                            td
+                                .form-group(align='center')
+                                    .btn.btn-success.a3
+                                        | 提交条件
+        .mode#modal1(tabindex='-1' role='dialog' aria-labelledby="label1"
+        aria-hidden="true" class='modal fade' style='width:auto')
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        h4.modal-title#label1
+                            | 新增一条招标信息
+                    .modal-body
+                        table.table.table-bordered.table-striped(align='center')
+                            thead
+                                tr
+                                    th
+                                        | 招标部门
+                                    th
+                                        | 标段（选填）
+                                    th
+                                        | 招标金额
+
+                            tbody
+                                tr
+                                    td
+                                        input.form-control#a1
+                                    td
+                                        input.form-control#a2
+                                    td
+                                        input.form-control#a3(placeholder='数字，单位为万元')
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss="modal" type='button')
+                            | 取消
+                        button.btn.btn-success.d1(type='button')
+                            | 保存
+        script(type='text/javascript').
+            $(document).ready(function () {
+                $('.a1').click(function () {
+                    var b1 = $('.b1').val();
+                    var b2 = $('.b2').val();
+                    var newRow = "<tr><td>" + b1 + "</td><td>" + b2 + "</td><td><button class='btn" +
+                        " btn-danger btn-xs' id='a4' onclick='del(this)'>删除</button></td></tr>";
+                    $(".c1").append(newRow);
+                });
+                $('.a2').click(function () {
+                    var b3 = $('.b3').val();
+                    var b4 = $('.b4').val();
+                    var newRow = "<tr><td>" + b3 + "</td><td>" + b4 + "</td><td><button class='btn" +
+                        " btn-danger btn-xs' id='a5'>删除</button></td></tr>";
+                    $(".c1").append(newRow);
+                });
+                $(document).on('click', '#a4', function () {
+                    $(this).parents('tr').remove();
+                });
+                $(document).on('click', '#a5', function () {
+                    $(this).parents('tr').remove();
+                });
+                $('.a3').click(function () {
+                    var table = $('.c1').tableToJSON(
+                        {ignoreEmptyRows:true,
+                        ignoreColumns:[2]}
+                    );
+                    var table1 = JSON.stringify(table);
+                    if(confirm('抽签数据已经保存到数据库，进入抽签页面？')){
+                        window.location.href='chouqian'
+                    }
+                });
+                $('.d1').click(function () {
+                    var a1 = $('#a1').val();
+                    var a2 = $('#a2').val();
+                    var a3 = $('#a3').val();
+                    if(a1 == '' || a3 == '' || isNaN(a3)){
+                        alert('请输入正确的招标部门与投标金额！')}
+                    else{
+                        if(confirm('确认把招标信息提交到数据库吗？')){
+                            $.ajax({
+                                url:'guanli3/guanli3post',
+                                data: {
+                                    company: $('#a1').val(),
+                                    project: $('#a2').val(),
+                                    amount:  $('#a3').val()
+                                },
+                                type: 'POST',
+                                timeout: 36000,
+                                dataType: 'text',
+                                success: function (data, textStatus) {
+                                }
+                            });
+                        window.location.href='guanli3'
+                        }
+                    }
+                });
+                $('#z1').click(function () {
+                    window.location.href = 'guanli1'
+                })
+                $('#z2').click(function () {
+                    window.location.href = 'guanli2'
+                });
+                $('#z3').click(function () {
+                    if(confirm('确认已经完成信息填写，并进入抽签页面吗？')){
+                        window.location.href='chouqian'
+                    }
+                });
+                $('#z4').click(function () {
+                    if (confirm('确认退出登录吗？')) {
+                        window.location.href = 'login';
+                    }
+                });
+                $('#x1').click(function () {
+                    window.location.href='houtai'
+                })
+
+            });
