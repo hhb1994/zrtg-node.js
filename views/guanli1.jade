@@ -19,12 +19,6 @@ html
                             h3(align='center' style='color:#ffffff')
                                 | 选项
                         .panel-body(style ='background:#e0e1ea position:static')
-                            h4(align='center')
-                                | 新增专家信息
-                            .form-group(style='margin-bottom:40px')
-                                button.btn.btn-success.btn-block(data-toggle='modal' data-target='#modal1')
-                                    | 新增
-                            hr
                             h4(align='center' )
                                 | 登录用户管理
                             .form-group(style='margin-bottom:40px')
@@ -46,6 +40,9 @@ html
                             h3(align='center' style='color:#ffffff')
                                 |专家信息管理
                         .panel-body(style ='background:#e0e1ea')
+                            .form-group
+                                button.btn.btn-success(data-toggle='modal' data-target='#modal1')
+                                    | 新增一条专家信息
                             table.table#tb
                                 thead
                                     tr

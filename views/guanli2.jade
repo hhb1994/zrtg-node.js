@@ -19,12 +19,6 @@ html
                             h3(align='center' style='color:#ffffff')
                                 | 选项
                         .panel-body
-                            h4(align='center')
-                                | 新增用户信息
-                            .form-group(style='margin-bottom:40px')
-                                button.btn.btn-success.btn-block(data-toggle='modal' data-target='#modal1')
-                                    | 新增
-                            hr
                             h4( align ='center')
                                 | 专家信息管理
                             .form-group(style='margin-bottom:40px' )
@@ -46,7 +40,10 @@ html
                         .panel-heading(style='background:#0d6aad')
                             h3(align='center' , style='color:#ffffff')
                                 |登录人员信息管理
-                        .panel-body(style='background:#e0e1ea' , align='center')
+                        .panel-body(style='background:#e0e1ea' )
+                            .form-group(style='margin-bottom:40px')
+                                button.btn.btn-success(data-toggle='modal' data-target='#modal1')
+                                    | 新增一条用户信息
                             table.table#tb(align='center')
                                 thead
                                     tr
