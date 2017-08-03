@@ -5,27 +5,81 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
         script(src='/javascripts/jquery-3.2.1.min.js')
+        script(src='/javascripts/vue.js')
         script(src='/bootstrap-3.3.7-dist/js/bootstrap.min.js')
-    body(style='background-image:url("images/1.jpg")')
+        script(type="text/javascript" charset="utf8" src="DataTables-1.10.15/media/js/jquery.dataTables.js")
+    body(style='background-image:url("images/1.jpg");background-repeat:no-repeat;background-attachment:fixed;')
         .container
             .row
-                .col-md-10.col-md-offset-1
-                    .panel.panel-default(style='margin-top: 10px;border:1px')
+                .logo(align='center')
+                    img(src='images/1.png' style='margin-top:10px;margin-bottom:40px')
+                .col-md-10.col-md-offset-1(align='center')
+                    .panel.panel-default(style='margin-top: 10px;border:1px;width:80%')
                         .panel-heading(style='background:#0d6aad')
                             h4(align='center', style='color:#ffffff')
-                                | 添加专家技能
+                                | ${abi }专家
                         .panel-body(style='background:#e0e1ea', align='center')
-                                form(action='expertAbi_add.action', method='post' role='form')
-                                    input(type='hidden', name='uid', value='${uid }')
-                                    h4
-                                        | 专业技能：
-                                    select(name='abi' class='form-control' style='width:50%')
-                                        option(value='视频') 视频
-                                        option(value='音频') 音频
-                                        option(value='网络/IT') 网络/IT
-                                        option(value='灯光舞美') 灯光舞美
-                                        option(value='传输发射') 传输发射
-                                    input(type='submit', value='确定' class='btn btn-block btn-success' style='width:40%;margin-top:30px')
+                            form(action='expert_sort.action' role='form')
+                                h4
+                                    | 专业技能：
+                                select(name='abi' class='form-control' style='width:60%')
+                                    option(value='') 请选择技能
+                                    option(value='视频') 视频
+                                    option(value='音频') 音频
+                                    option(value='网络/IT') 网络/IT
+                                    option(value='灯光舞美') 灯光舞美
+                                    option(value='传输发射') 传输发射
+                                input(type='submit', value='确定' class='btn btn-block btn-success' style='width:60%;margin-top:30px')
+                                hr
+                            table#tb(width='100%' class='table table-bordered')
+                                thead
+                                    tr
+                                        th 姓名
+                                        th 工号
+                                        th 部门
+                                        th 详情
+                                        th 删除
+                                tbody
+                                    c:foreach(items='${expertAbiList }', var='bean')
+                                        tr
+                                            td ${bean.uname }
+                                            td ${bean.no }
+                                            td ${bean.dept }
+                                            td
+                                                a(href=' ' class='btn btn-info btn-sm') 详情
+                                            td
+                                                a(href='expert_delete.action?uid=${bean.uid }'
+                                                onclick="return confirm('删除后将无法恢复,确定要删除?')"
+                                                class='btn btn-danger btn-sm') 删除
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $('#tb').DataTable({
+                "oLanguage": {
+                    "oAria": {
+                        "sSortAscending": " - click/return to sort ascending",
+                        "sSortDescending": " - click/return to sort descending"
+                    },
+                    "sLengthMenu": "显示 _MENU_ 记录",
+                    "sZeroRecords": "对不起，查询不到任何相关数据",
+                    "sEmptyTable": "未有相关数据",
+                    "sLoadingRecords": "正在加载数据-请等待...",
+                    "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+                    "sInfoEmpty": "当前显示0到0条，共0条记录",
+                    "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
+                    "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
+                    "sSearch": "模糊查询：",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": " 上一页 ",
+                        "sNext": " 下一页 ",
+                        "sLast": " 尾页 "
+                    }
+                }
+
+            });
+        })
+
 
 
 
