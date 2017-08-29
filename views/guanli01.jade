@@ -2,7 +2,7 @@ doctype html
 html
     head
         title 管理页面
-        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/animate.css')
         link(rel='stylesheet', href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
         script(src='/javascripts/jquery-3.2.1.min.js')
         script(src='/javascripts/vue.js')
@@ -13,73 +13,112 @@ html
             .row
                 .logo(align='center')
                     img(src='images/1.png' style='margin-top:10px;margin-bottom:40px')
-                .col-md-10.col-md-offset-1(align='center')
-                    .panel.panel-default(style='margin-top: 10px;border:1px;width:80%')
+                .col-md-3(class='animated bounceInUp')
+                    .panel.panel-default(style='border:1px')
+                        .panel-heading(style='background: #0d6aad')
+                            h3(align='center' style='color:#ffffff')
+                                | 选项
+                        .panel-body(style ='background:#e0e1ea position:static')
+                            h4(align='center' )
+                                | 专家信息管理
+                            .form-group(style='margin-bottom:40px')
+                                button.btn.btn-block.btn-success(type='button')
+                                    | 进入
+                            hr
+                            h4(align='center' )
+                                | 登录用户管理
+                            .form-group(style='margin-bottom:40px')
+                                button.btn.btn-block.btn-success(type='button')
+                                    | 进入
+                            hr
+                            h4(align='center')
+                                | 抽签系统配置
+                            .form-group(style='margin-bottom:40px')
+                                button.btn.btn-block.btn-success(type='button')
+                                    | 进入
+                            hr
+                            .form-group(style='margin-bottom:40px')
+                                button.btn.btn-block.btn-danger(type='button')
+                                    | 退出登陆
+                .col-md-9(class='animated bounceInUp')
+                    .panel.panel-default(style='border:1px')
                         .panel-heading(style='background:#0d6aad')
-                            h4(align='center', style='color:#ffffff')
-                                | ${abi }专家
-                        .panel-body(style='background:#e0e1ea', align='center')
-                            form(action='expert_sort.action' role='form')
-                                h4
-                                    | 专业技能：
-                                select(name='abi' class='form-control' style='width:60%')
-                                    option(value='') 请选择技能
-                                    option(value='视频') 视频
-                                    option(value='音频') 音频
-                                    option(value='网络/IT') 网络/IT
-                                    option(value='灯光舞美') 灯光舞美
-                                    option(value='传输发射') 传输发射
-                                input(type='submit', value='确定' class='btn btn-block btn-success' style='width:60%;margin-top:30px')
-                                hr
-                            table#tb(width='100%' class='table table-bordered')
+                            h3(align='center' , style='color:#ffffff')
+                                | 抽签页面
+                        .panel-body(style='background:#e0e1ea' , align='center')
+                            h4
+                                | 招标项目信息
+                            table.table#tb.a1(align='center')
                                 thead
                                     tr
-                                        th 姓名
-                                        th 工号
-                                        th 部门
-                                        th 详情
-                                        th 删除
+                                        th
+                                            | 项目名称
+                                        th
+                                            | 标段
+                                        th
+                                            | 投标金额
                                 tbody
-                                    c:foreach(items='${expertAbiList }', var='bean')
-                                        tr
-                                            td ${bean.uname }
-                                            td ${bean.no }
-                                            td ${bean.dept }
-                                            td
-                                                a(href=' ' class='btn btn-info btn-sm') 详情
-                                            td
-                                                a(href='expert_delete.action?uid=${bean.uid }'
-                                                onclick="return confirm('删除后将无法恢复,确定要删除?')"
-                                                class='btn btn-danger btn-sm') 删除
+                                    tr
+                                        td
+                                            | Tencent
+                                        td
+                                            | 云平台
+                                        td
+                                            | 1000 万元
+                            hr
+                            h4
+                                | 抽签条件信息
+                            table.table#tb1.a2(align='center' style='display:none')
+                                thead
+                                    tr
+                                        th
+                                            | 条件
+                                        th
+                                            | 人数
+                                tbody
+                                    tr
+                                        td
+                                            | 科技管理部
+                                        td
+                                            | 2
+                                    tr
+                                        td
+                                            | 新闻中心
+                                        td
+                                            | 3
+                                    tr
+                                        td
+                                            | 网络/IT
+                                        td
+                                            | 2
+                                    tr
+                                        td
+                                            | 音频
+                                        td
+                                            | 1
+                            button.btn.btn-block.btn-success
+                                | 开始抽签
+                            hr
+                            h4
+                                | 抽签结果
+                            table.table
+                                thead
+                                    tr
+                                        th
+                                            | 专家姓名
+                                        th
+                                            | 所属单位
+                                tbody
+                                    tr
+
     script(type='text/javascript').
         $(document).ready(function () {
-            $('#tb').DataTable({
-                "oLanguage": {
-                    "oAria": {
-                        "sSortAscending": " - click/return to sort ascending",
-                        "sSortDescending": " - click/return to sort descending"
-                    },
-                    "sLengthMenu": "显示 _MENU_ 记录",
-                    "sZeroRecords": "对不起，查询不到任何相关数据",
-                    "sEmptyTable": "未有相关数据",
-                    "sLoadingRecords": "正在加载数据-请等待...",
-                    "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
-                    "sInfoEmpty": "当前显示0到0条，共0条记录",
-                    "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
-                    "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
-                    "sSearch": "模糊查询：",
-                    "sUrl": "",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": " 上一页 ",
-                        "sNext": " 下一页 ",
-                        "sLast": " 尾页 "
-                    }
-                }
-
-            });
+            function a() {
+                $('.a1').hide()
+            };
+            function b() {
+                $('.a2').show()
+            }
+            setTimeout(a,2000);
+            setTimeout(b,2000)
         })
-
-
-
-
